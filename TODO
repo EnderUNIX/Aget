@@ -1,0 +1,14 @@
+EnderUNIX Aget v0.4.1 TODO:
+-------------------------
+
+-> HTTP Proxy support
+-> Constructing libaget.so/libaget.a for IstanbulX project of acikkod.org
+-> Thread exit status evaluation:
+   If one of the threads fail, the program should retry the failed 
+   later on.
+-> FreeBSD/NetBSD/OpenBSD Port/Package
+-> Multiple downloads
+-> FTP Support
+
+Tue May 12 08:44:31 EEST 2009
+http://www.enderunix.org/aget/

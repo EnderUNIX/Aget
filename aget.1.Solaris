@@ -1,0 +1,138 @@
+.TH aget 1 "23 Feb 2009" "SunOS 5.11" "User Commands"
+.SH NAME
+Aget \- multi-threaded HTTP download accelerator
+.SH SYNOPSIS
+.LP
+.nf
+\fBaget\fR [\fBoptions\fR]... \fI\s-1URL\s0\fR
+.fi
+
+.SH DESCRIPTION
+.LP
+Aget is a multi-threaded HTTP download accelerator that is utilizing the POSIX thread library - \fBlibpthread\fR(3LIB). Aget is an acronym for two Turkish words "Acele Getir" (English: Get it fast!). 
+
+Tests show that Aget is successful in realizing its objectives. A file of size 36,347,010 bytes was downloaded in 14 minutes 28 secs via \fBwget\fR(1); whereas it was downloaded in 3 minutes and 15 seconds via aget.
+
+If downloading a file of size less than 512K bytes, it's suggested to use small segments, i.e. 4-5. However for large files, it's urged to increase the number of threads to speed up.
+
+.SH OPTIONS
+.sp
+.ne 2
+.mk
+.na
+\fB-p\fR \fIport\fR
+.ad
+.RS 15n
+.rt  
+\fIport\fR number to connect to.
+.RE
+
+.sp
+.ne 2
+.mk
+.na
+\fB-l\fR \fIfile\fR
+.ad
+.RS 15n
+.rt  
+local \fIfile\fR name, if different from the remote file.
+.RE
+
+.sp
+.ne 2
+.mk
+.na
+\fB-n\fR \fIthreads\fR
+.ad
+.RS 15n
+.rt  
+suggested number of \fIthreads\fR.
+If no thread number is supplied, it is defaulted to 1.
+.RE
+
+.sp
+.ne 2
+.mk
+.na
+\fB-f\fR
+.ad
+.RS 15n
+.rt  
+force use of suggested number of \fIthreads\fR.
+.RE
+
+.sp
+.ne 2
+.mk
+.na
+\fB-h\fR
+.ad
+.RS 15n
+.rt  
+help screen.
+.RE
+
+.sp
+.ne 2
+.mk
+.na
+\fB-v\fR
+.ad
+.RS 15n
+.rt  
+version info.
+.RE
+
+.SH EXIT STATUS
+.LP
+The following exit values are returned:
+.sp
+.ne 2
+.mk
+.na
+\fB\fB0\fR \fR
+.ad
+.RS 7n
+.rt
+Successful completion.
+.RE
+
+.sp
+.ne 2
+.mk
+.na
+\fB\fB1\fR \fR
+.ad
+.RS 7n
+.rt 
+Application exited with failure.
+.RE
+
+.sp
+.ne 2
+.mk
+.na
+\fB\fB-1\fR \fR
+.ad
+.RS 7n
+.rt 
+POSIX pthreads creation error occurred.
+.RE
+
+.SH "EXAMPLES"
+.PP
+\fBExample 1: Say you want to download a \fIURL\fR using 10 \fIthreads\fR, just type:\fR
+.PP
+.PP
+.nf
+example% \fBaget -n 10 http://www.enderunix.org/murat/barismanco-hibrahimsofrasi.mp3\fR
+.fi
+
+.SH SEE ALSO
+.LP 
+wget(1), libpthread(3LIB)
+
+.SH BUGS
+.LP
+This program does not support IPv6 yet, this is an architectural bug that will be fixed.
+

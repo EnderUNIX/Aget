@@ -1,0 +1,65 @@
+EnderUNIX Aget ChangeLog
+
+* Tue May 12 08:25:29 EEST 2009
+  Version 0.4.1 adds/changes the following:
+  - Fixed errno problem on newer glibc's
+  - Large file support (files bigger than 2 GB)
+    (Thanks to Siwei Liu of Sun Microsystems)
+
+* Fri Nov 22 07:44:20 EET 2002
+  Version 0.4 adds/changes the following:
+  - Fixed bugs in Resume code.
+
+  - Fixed miscalculations in the progress indicator 
+
+* Fri Sep 20 18:11:11 EEST 2002
+  Version 0.39 adds/changes the following:
+  - Hafiye is not 100 % POSIX compliant now.
+    pread/pwrite functions are now used to 
+    simultaneously write to the local file.
+
+  - Because of pwrite, the local file is not
+    assembled at the end now, it's assembled
+    at the same time. This speeds up large
+    downloads; since previously lots of I/O was used
+    to assemble the file. This is now decreased by
+    at least fifty percent.
+    
+  - Solaris bug fixed.
+
+  - Resume support. 
+
+  - Some more options:
+    -p	[port number to connect to]
+    -l  [local file name, if different from the remote file]
+    -f  [force use of suggested number of threads]
+
+  - A progress indicator has been added.
+
+  - Code has been re-arranged. Since aget starts
+    to become larger, that was a need.
+
+  - A README-Developer has been added for
+    developers who want to contribute to aget.
+
+
+* Fri May  3 23:25:08 EEST 2002
+  Version 0.2p1 adds/changes the following:
+  - getopt() problem is now solved,
+    The program should really run on Posix systems.
+    I've tested it on Linux, FreeBSD ans Solaris.
+
+  - If no thread number is supplied, it is defaulted to 1.
+
+  - A Solaris Makefile is added to the tarball.
+
+* Wed May  1 18:15:32 EEST 2002
+  Version 0.2 adds/changes the following:
+  - File is now created seperately in each thread
+    and later, it is assembled. 
+    Thus, some overhead from locking and unlocking of
+    the mutex has been decreased.
+
+
+* Wed May  1 10:43:44 EEST 2002
+  First Public Release: 0.1

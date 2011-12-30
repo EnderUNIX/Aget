@@ -1,0 +1,14 @@
+EnderUNIX Aget v0.4.1 README
+--------------------------
+
+This program is a starting point for a very useful project like FlashGet
+for Win32.  My aim is to provide all the functionality that program has.
+
+If you need assistance in installing Aget, you can see INSTALL file,
+Program is tested on RedHat Linux 8, FreeBSD 4.7 and
+Solaris 7,8 (Sparc). It proved to be successful.
+
+You can get much more info from the Aget Web site:
+http://www.enderunix.org/aget
+
+Tue May 12 08:43:52 EEST 2009
