@@ -18,7 +18,6 @@ void parse_url(char *url, struct request *req)
 	int i, j, k;
 
 	i = j = k = 0;
-	s = url;
 	if ((strncmp(url, "ftp://", 6)) == 0) {
 		fprintf(stderr, "Error: Currently Aget doesn't support FTP requests...\n");
 		exit(1);
@@ -146,8 +145,8 @@ void revstr(char *str)
 	for (i = size; i >= 0; i--, s++)
 		*s = *(str + i - 1);
 	*s = '\0';
-	memset(str, 0, size);
 	strncpy(str, p, size);
+	str[size] = '\0';
 	free(p);
 }
 
