@@ -37,8 +37,10 @@ extern int errno;
 void get(struct request *req)
 {
 	int i, ret, fd, diff_sec, nok = 0;
-	long long soffset, foffset;
+	long long soffset;
 	char *fmt;
+	in_addr_t req_s_addr;
+	uint16_t req_sin_port;
 
 	if (req->proto == PROTO_HTTP) 
 		http_head_req(req);
@@ -87,15 +89,20 @@ void get(struct request *req)
 
 	/* Get the starting time, prepare GET format string, and start the threads */
 	fmt = (char *)calloc(GETREQSIZ - 2, sizeof(char));
+	req_s_addr = inet_addr(req->ip);
+	req_sin_port = htons(req->port);
 	time(&t_start);
 	for (i = 0; i < nthreads; i++) {
 		soffset = calc_offset(req->clength, i, nthreads);
-		foffset = calc_offset(req->clength, i + 1, nthreads);
 		wthread[i].soffset = soffset;
-		wthread[i].foffset = (i == nthreads - 1 ? req->clength : foffset);
+		if (i == nthreads - 1) {
+			wthread[i].foffset = req->clength;
+		} else {
+			wthread[i].foffset = calc_offset(req->clength, i + 1, nthreads);
+		}
 		wthread[i].sin.sin_family = AF_INET;
-		wthread[i].sin.sin_addr.s_addr = inet_addr(req->ip);
-		wthread[i].sin.sin_port = htons(req->port);
+		wthread[i].sin.sin_addr.s_addr = req_s_addr;
+		wthread[i].sin.sin_port = req_sin_port;
 		wthread[i].fd = dup(fd);
 		wthread[i].clength = req->clength;
 		snprintf(fmt, GETREQSIZ, GETREQ, req->url, req->host, PROGVERSION, soffset);

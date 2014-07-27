@@ -20,8 +20,6 @@ void * signal_waiter(void *arg)
 {
 	int signal;
 
-	arg = NULL;
-
 	pthread_sigmask(SIG_UNBLOCK, &signal_set, NULL);
 	
 	while(1) {

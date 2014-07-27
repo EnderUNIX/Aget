@@ -107,7 +107,6 @@ void * http_get(void *arg) {
 	pthread_mutex_unlock(&bwritten_mutex);
 
 	while (td->offset < foffset) {
-		memset(rbuf, GETRECVSIZ, 0);
 		dr = recv(sd, rbuf, GETRECVSIZ, 0);
 		if ((td->offset + dr) > foffset)
 			dw = pwrite(td->fd, rbuf, foffset - td->offset, td->offset);
